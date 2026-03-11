@@ -61,10 +61,8 @@ vector<float> conv1D(const vector<float>& signal, const vector<float>& kernel) {
 using namespace std;
 
 vector<vector<int>> conv2D(const vector<vector<int>>& img, const vector<vector<int>>& kernel) {
-    int h = img.size();
-    int w = img[0].size();
-    int kh = kernel.size();
-    int kw = kernel[0].size();
+    int h = img.size(), w = img[0].size();
+    int kh = kernel.size(), kw = kernel[0].size();
     int pad_h = kh / 2, pad_w = kw / 2;
 
     vector<vector<int>> result(h, vector<int>(w, 0));
@@ -127,7 +125,7 @@ vector<int> conv2D_1Darray(const vector<int>& img, int width, int height,
 using namespace std;
 using namespace chrono;
 
-// 標準二維卷積 (使用 vector<vector<int>>)
+// 2D Convolution
 vector<vector<int>> conv2D(const vector<vector<int>>& img, const vector<vector<int>>& kernel) {
     int h = img.size(), w = img[0].size();
     int kh = kernel.size(), kw = kernel[0].size();
@@ -152,7 +150,7 @@ vector<vector<int>> conv2D(const vector<vector<int>>& img, const vector<vector<i
     return result;
 }
 
-// 高效版：一維陣列卷積 (直接用一維陣列存影像)
+// 1D Convolution
 vector<int> conv2D_1Darray(const vector<int>& img, int width, int height,
                            const vector<int>& kernel, int ksize) {
     int pad = ksize / 2;
@@ -183,13 +181,12 @@ int main() {
     vector<vector<int>> kernel2D(5, vector<int>(5, 1));       // 5x5 kernel (二維)
     vector<int> kernelFlat(25, 1);                            // 5x5 kernel (一維)
 
-    // 標準二維卷積
     auto t1 = high_resolution_clock::now();
     auto r1 = conv2D(img2D, kernel2D);
     auto t2 = high_resolution_clock::now();
     cout << "標準二維卷積耗時: " << duration<double>(t2 - t1).count() << " 秒\n";
     auto t11 = duration<double>(t2 - t1).count();
-    // 高效版一維陣列卷積
+
     auto t5 = high_resolution_clock::now();
     auto r3 = conv2D_1Darray(imgFlat, width, height, kernelFlat, 5);
     auto t6 = high_resolution_clock::now();
