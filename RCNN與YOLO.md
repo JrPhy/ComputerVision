@@ -239,3 +239,4 @@ $$\ 正確率 Accuracy = \frac{TP+TN}{TP+TN+FP+FN} ，精確率 Precision = \fra
 在工業及醫療檢測情況中有問題的母數 (TP+FN) 是很少的，也就是不平衡的資料，使得正確率會非常高，畢竟沒問題的母數多，且只要能判斷正確即可達到很高的正確率與精確率，所以會更關心召回率，也就是***有問題且真的能被模型檢測出有問題***的結果比例是多高，所以模型會希望是 Precision 與 recall 都接近 1，就可以畫成以下圖
 
 ![img](https://ask.qcloudimg.com/http-save/7236395/k7u3m5kziu.png)
+[source](https://cloud.tencent.cn/developer/article/1627706)
